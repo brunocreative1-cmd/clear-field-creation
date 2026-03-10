@@ -94,7 +94,7 @@ export default function CheckoutModal({ isOpen, onClose }) {
     }
   }, [step, pixTransactionId, showToast])
 
-  // Poll payment status via FortPay (sem necessidade de webhook)
+  // Poll payment status via Paradise
   useEffect(() => {
     if (step === 5 && pixTransactionId && pixStatus === 'pending') {
       pollRef.current = setInterval(async () => {

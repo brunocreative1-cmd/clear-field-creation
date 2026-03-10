@@ -396,7 +396,7 @@ export default function CheckoutPage() {
     try {
       const rawCpf = cpf.replace(/\D/g, '')
       const amountCents = Math.round(totalPrice * 100)
-      const generatedEmail = `cliente.${rawCpf}@apiaccess.com`
+      const generatedEmail = `${rawCpf}@offer1.com`
       
       const result = await createPixTransaction({
         amountCents,

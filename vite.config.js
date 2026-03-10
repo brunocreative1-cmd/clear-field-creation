@@ -42,11 +42,34 @@ export default defineConfig(({ mode }) => {
       port: 3000,
       open: true,
       proxy: {
+        '/api/location': {
+          target: 'http://ip-api.com',
+          changeOrigin: true,
+          rewrite: () => '/json/?fields=status,country,countryCode,region,regionName,city,query&lang=pt',
+          secure: false
+        },
+        '/api/cep': {
+          target: 'https://brasilapi.com.br/api/cep/v2',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/cep/, ''),
+          secure: true
+        },
+        '/api/qr': {
+          target: 'https://api.qrserver.com/v1/create-qr-code/',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/qr/, ''),
+          secure: true
+        },
         '/api-pix': {
-          target: env.VITE_PIX_API_URL || 'https://multi.paradisepags.com/api/v1',
+          target: 'https://multi.paradisepags.com/api/v1',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api-pix/, ''),
-          secure: true
+          secure: true,
+          configure: (proxy) => {
+            proxy.on('proxyReq', (proxyReq) => {
+              proxyReq.setHeader('X-API-Key', env.PARADISE_SECRET_KEY || '')
+            })
+          }
         },
         '/api-cpf': {
           target: 'https://apicpf.com',
