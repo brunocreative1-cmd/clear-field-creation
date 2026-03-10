@@ -1,0 +1,17 @@
+# Digital Ocean App Platform - SPA Configuration
+# This ensures proper routing for Single Page Applications
+
+# All routes should serve index.html
+# This fixes 404 errors for /aprovado, /produto/*, etc.
+
+# Configuration applied:
+# 1. catchall_document: index.html
+# 2. error_document: index.html  
+# 3. Specific routes defined for main paths
+# 4. _redirects and static.json for fallback
+
+# Expected behavior:
+# https://burgz.food/ -> index.html (200)
+# https://burgz.food/produto/4 -> index.html (200) 
+# https://burgz.food/aprovado -> index.html (200)
+# React Router handles client-side routing
