@@ -18,43 +18,15 @@ function cacheResult(result) {
   } catch {}
 }
 
-async function tryBackendAPI() {
-  const controller = new AbortController()
-  const timeout = setTimeout(() => controller.abort(), 10000)
-  try {
-    const res = await fetch('/api/location', {
-      method: 'GET',
-      headers: { 'Accept': 'application/json' },
-      signal: controller.signal
-    })
-    clearTimeout(timeout)
-    if (!res.ok) return null
-
-    const data = await res.json()
-    if (!data?.detected || !data?.estado || !data?.cidade) return null
-
-    return { estado: data.estado, cidade: data.cidade, sigla: data.sigla }
-  } catch {
-    clearTimeout(timeout)
-    return null
-  }
-}
-
-async function tryPublicAPI() {
-  // ip-api.com: grátis, retorna city (45 req/min)
-  // Nota: só funciona via HTTP (não HTTPS) no plano free
-  // No browser pode ser bloqueado por mixed content, então usa ipapi.co como fallback
+async function tryIpApiCo() {
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), 4000)
-
   try {
     const res = await fetch('https://ipapi.co/json/', { signal: controller.signal })
     clearTimeout(timeout)
     if (!res.ok) return null
-
     const data = await res.json()
     if (data.country_code !== 'BR' || !data.city || !data.region) return null
-
     const sigla = ESTADO_SIGLA[data.region] || data.region_code || ''
     return { estado: data.region, cidade: data.city, sigla }
   } catch {
@@ -63,17 +35,38 @@ async function tryPublicAPI() {
   }
 }
 
+async function tryIpApiCom() {
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), 4000)
+  try {
+    const res = await fetch(
+      'https://freeipapi.com/api/json',
+      { signal: controller.signal }
+    )
+    clearTimeout(timeout)
+    if (!res.ok) return null
+    const data = await res.json()
+    if (data.countryCode !== 'BR' || !data.cityName || !data.regionName) return null
+    const sigla = ESTADO_SIGLA[data.regionName] || ''
+    return { estado: data.regionName, cidade: data.cityName, sigla }
+  } catch {
+    clearTimeout(timeout)
+    return null
+  }
+}
+
 export async function detectLocationByIP() {
   try {
-    // O backend já faz todos os fallbacks (API Ninjas → ip-api.com → ipapi.co)
-    // Não chamar tryPublicAPI() para evitar dupla tentativa desnecessária
-    const result = await tryBackendAPI()
+    // Tenta ambas as APIs em paralelo — retorna a primeira que responder com dado válido
+    const result = await Promise.any([
+      tryIpApiCo(),
+      tryIpApiCom()
+    ]).catch(() => null)
 
     if (result) {
       cacheResult(result)
       return result
     }
-
     return null
   } catch {
     return null
