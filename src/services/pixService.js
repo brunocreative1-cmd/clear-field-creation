@@ -3,8 +3,7 @@
  * Usa Edge Function (pix-proxy) que injeta X-API-Key no servidor
  */
 
-const PROJECT_ID = import.meta.env.VITE_SUPABASE_PROJECT_ID
-const FUNCTIONS_URL = `https://${PROJECT_ID}.supabase.co/functions/v1`
+const FUNCTIONS_URL = 'https://tsujmqgvnwnzswgogtvg.supabase.co/functions/v1'
 const PIX_FUNCTION = `${FUNCTIONS_URL}/pix-proxy`
 
 function generateReference() {
