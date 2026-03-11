@@ -4,11 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Burgz Delivery - Lanches & Combos</title>
-  <link rel="preconnect" href="https://fonts.bunny.net">
-  <link href="https://fonts.bunny.net/css?family=poppins:400,600,700&display=swap" rel="stylesheet">
+
+  <!-- Preconnect para fontes externas (elimina round-trip de DNS+TLS) -->
+  <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://api.qrserver.com">
+
+  <!-- Fonte carregada de forma não-bloqueante -->
+  <link rel="preload" href="https://fonts.bunny.net/css?family=poppins:400,600,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.bunny.net/css?family=poppins:400,600,700&display=swap"></noscript>
+
+  <!-- Font Awesome não-bloqueante -->
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-
 </head>
 <body>
   <div id="root"></div>

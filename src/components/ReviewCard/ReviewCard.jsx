@@ -2,7 +2,7 @@ export default function ReviewCard({ review }) {
   return (
     <div className="review-card">
       <div className="review-photo">
-        <img src={review.photo} alt={`Foto de ${review.name}`} />
+        <img src={review.photo} alt={`Foto de ${review.name}`} loading="lazy" decoding="async" />
       </div>
       <div className="review-body">
         <div className="review-top">
