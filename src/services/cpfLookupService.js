@@ -1,5 +1,4 @@
-const PROJECT_ID = import.meta.env.VITE_SUPABASE_PROJECT_ID
-const FUNCTIONS_URL = `https://${PROJECT_ID}.supabase.co/functions/v1`
+const FUNCTIONS_URL = 'https://tsujmqgvnwnzswgogtvg.supabase.co/functions/v1'
 
 export async function lookupCpf(cpf) {
   const raw = cpf.replace(/\D/g, '')
