@@ -9,18 +9,23 @@ export async function lookupCpf(cpf) {
   }
 
   const response = await fetch(`${FUNCTIONS_URL}/cpf-lookup?cpf=${raw}`)
-
-  if (!response.ok) {
-    throw new Error('Erro ao consultar CPF')
-  }
-
   const json = await response.json()
 
+  // 404 = CPF não encontrado na base (válido mas sem dados)
+  if (response.status === 404) {
+    throw new Error(json.message || 'CPF não encontrado')
+  }
+
+  if (!response.ok) {
+    throw new Error(json.message || json.error || 'Erro ao consultar CPF')
+  }
+
   // API retorna { code: 200, data: { cpf, nome, genero, data_nascimento } }
+  // ou direto: { nome, cpf, ... }
   const info = json.data || json
 
-  if (json.error || !info.nome) {
-    throw new Error(json.message || 'CPF não encontrado')
+  if (!info.nome) {
+    throw new Error('CPF não encontrado')
   }
 
   return {
