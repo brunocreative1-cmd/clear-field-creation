@@ -1,3 +1,6 @@
+const PROJECT_ID = import.meta.env.VITE_SUPABASE_PROJECT_ID
+const FUNCTIONS_URL = `https://${PROJECT_ID}.supabase.co/functions/v1`
+
 export async function fetchCep(cep) {
   const cleanCep = cep.replace(/\D/g, '')
 
@@ -6,15 +9,13 @@ export async function fetchCep(cep) {
   }
 
   try {
-    // Timeout de 5 segundos
     const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), 5000)
+    const timeoutId = setTimeout(() => controller.abort(), 8000)
 
-    // 🔒 Usa proxy do backend para ocul tar URL real da BrasilAPI
-    const response = await fetch(`/api/cep/${cleanCep}`, {
+    const response = await fetch(`${FUNCTIONS_URL}/cep-lookup?cep=${cleanCep}`, {
       signal: controller.signal
     })
-    
+
     clearTimeout(timeoutId)
 
     if (!response.ok) {

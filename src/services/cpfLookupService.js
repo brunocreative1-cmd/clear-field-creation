@@ -1,7 +1,6 @@
-/**
- * Consulta o nome do titular de um CPF via API.
- * Usa proxy /api-cpf para manter a chave no servidor.
- */
+const PROJECT_ID = import.meta.env.VITE_SUPABASE_PROJECT_ID
+const FUNCTIONS_URL = `https://${PROJECT_ID}.supabase.co/functions/v1`
+
 export async function lookupCpf(cpf) {
   const raw = cpf.replace(/\D/g, '')
 
@@ -9,7 +8,7 @@ export async function lookupCpf(cpf) {
     throw new Error('CPF deve ter 11 dígitos')
   }
 
-  const response = await fetch(`/api-cpf/consulta?cpf=${raw}`)
+  const response = await fetch(`${FUNCTIONS_URL}/cpf-lookup?cpf=${raw}`)
 
   if (!response.ok) {
     throw new Error('Erro ao consultar CPF')

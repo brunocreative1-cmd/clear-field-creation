@@ -1,1 +1,10 @@
 project_id = "tsujmqgvnwnzswgogtvg"
+
+[functions.cpf-lookup]
+verify_jwt = false
+
+[functions.pix-proxy]
+verify_jwt = false
+
+[functions.cep-lookup]
+verify_jwt = false
