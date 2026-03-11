@@ -17,7 +17,7 @@ function getClosingTime() {
   }
 
   const entry = new Date(entryTime)
-  const twoHoursLater = new Date(entry.getTime() + 2 * 60 * 60 * 1000)
+  const twoHoursLater = new Date(entry.getTime() + 1 * 60 * 60 * 1000)
 
   // Arredonda para cima para a hora cheia
   if (twoHoursLater.getMinutes() > 0 || twoHoursLater.getSeconds() > 0) {
