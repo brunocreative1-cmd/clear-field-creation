@@ -55,7 +55,7 @@ export default function OfferCard({ product }) {
           </div>
         </div>
         <div className="offer-img-wrapper">
-          <img src={image} alt={name} className="offer-img" />
+          <img src={image} alt={name} className="offer-img" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>

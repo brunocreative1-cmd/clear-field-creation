@@ -33,7 +33,7 @@ export default function HighlightsGrid({ products }) {
           <div onClick={() => handleClick(product.id)} key={product.id} className="highlight-card-link" style={{ cursor: 'pointer' }}>
             <div className="highlight-card">
               <div className="highlight-img-wrapper">
-                <img src={product.image} alt={product.name} className="highlight-img" />
+                <img src={product.image} alt={product.name} className="highlight-img" loading="lazy" decoding="async" />
                 {index === 0 && (
                   <span className="highlight-tag">Mais pedido</span>
                 )}
