@@ -1,10 +1,11 @@
 /**
  * Serviço de Pagamentos PIX via Paradise
- * Envia payload no formato nativo da Paradise
- * Proxy (Vite em dev / Express em prod) adiciona X-API-Key
+ * Usa Edge Function (pix-proxy) que injeta X-API-Key no servidor
  */
 
-const API_BASE = '/api-pix'
+const PROJECT_ID = import.meta.env.VITE_SUPABASE_PROJECT_ID
+const FUNCTIONS_URL = `https://${PROJECT_ID}.supabase.co/functions/v1`
+const PIX_FUNCTION = `${FUNCTIONS_URL}/pix-proxy`
 
 function generateReference() {
   const ts = Date.now().toString(36)
@@ -13,7 +14,7 @@ function generateReference() {
 }
 
 /**
- * Cria uma transação Pix via Paradise
+ * Cria uma transação Pix via Paradise (através de Edge Function)
  */
 export async function createPixTransaction({
   amountCents,
@@ -40,9 +41,9 @@ export async function createPixTransaction({
 
   try {
     const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), 15000)
+    const timeoutId = setTimeout(() => controller.abort(), 20000)
 
-    const response = await fetch(`${API_BASE}/transaction.php`, {
+    const response = await fetch(`${PIX_FUNCTION}?path=/transaction.php`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
@@ -53,12 +54,10 @@ export async function createPixTransaction({
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}))
-      console.error('[PIX API] Erro:', response.status, errorData)
       throw new Error(errorData.message || `Erro HTTP: ${response.status}`)
     }
 
     const data = await response.json()
-    console.log('[PIX API] Resposta:', data)
 
     if (data.status !== 'success' && !data.qr_code) {
       throw new Error(data.message || 'Erro ao criar transação Pix')
@@ -82,7 +81,7 @@ export async function createPixTransaction({
           })
         }
       } catch (err) {
-        console.warn('[PIX API] Fallback QR Code falhou:', err.message)
+        console.warn('[PIX] Fallback QR Code falhou:', err.message)
       }
     }
 
@@ -99,7 +98,6 @@ export async function createPixTransaction({
       amountInReais: amountCents / 100
     }
   } catch (error) {
-    console.error('[PIX API] Erro ao criar transação:', error.message)
     throw error
   }
 }
@@ -110,7 +108,7 @@ export async function createPixTransaction({
 export async function checkTransactionStatus(transactionId) {
   try {
     const response = await fetch(
-      `${API_BASE}/query.php?action=get_transaction&id=${transactionId}`,
+      `${PIX_FUNCTION}?path=/query.php&action=get_transaction&id=${transactionId}`,
       { headers: { 'Accept': 'application/json' } }
     )
 
@@ -119,7 +117,6 @@ export async function checkTransactionStatus(transactionId) {
     }
 
     const data = await response.json()
-    console.log(`[PIX API] Status de ${transactionId}:`, data.status)
 
     const rawStatus = data.status || ''
     let status = rawStatus
@@ -139,7 +136,6 @@ export async function checkTransactionStatus(transactionId) {
       updatedAt: data.updated_at
     }
   } catch (error) {
-    console.error('[PIX API] Erro ao verificar status:', error.message)
     throw error
   }
 }
