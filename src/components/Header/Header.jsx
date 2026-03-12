@@ -54,7 +54,7 @@ export default function Header() {
     <>
       <header className="header-banner">
         <div className="banner-cover">
-          <img src="/img/capa.webp" alt="Burgz Delivery - Hambúrgueres artesanais" className="banner-cover-img" />
+          <img src="/img/capa.webp" alt="Star Burger - Hambúrgueres artesanais" className="banner-cover-img" />
         </div>
       </header>
 
