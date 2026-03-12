@@ -49,7 +49,7 @@ export default function ApprovedPage() {
         </div>
 
         <p className="conf-footer-text">
-          Obrigado por escolher a <strong>Burgz Delivery</strong>! 🍔
+          Obrigado por escolher a <strong>Star Burger</strong>! 🍔
         </p>
       </div>
     </div>

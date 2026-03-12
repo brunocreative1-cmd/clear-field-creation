@@ -66,7 +66,7 @@ export default function Header() {
         </div>
 
         <section className="restaurant-info">
-          <h1 className="restaurant-name">Burgz Delivery</h1>
+          <h1 className="restaurant-name">Star Burger</h1>
           <div className="social-icons">
             <a href="#" className="social-icon" aria-label="Instagram">
               <i className="fab fa-instagram"></i>

@@ -107,7 +107,7 @@ export default function LocationBanner() {
                 </svg>
               </div>
               <h2 className="locbot-title">
-                A Burgz mais próxima está{' '}
+                A Star Burger mais próxima está{' '}
                 a <span className="locbot-highlight">{distance}km</span> de você! 📍
               </h2>
               <p className="locbot-delivery">Entrega em <strong>20–30 min</strong></p>

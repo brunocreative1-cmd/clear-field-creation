@@ -16,7 +16,7 @@ export default function Footer() {
           <i className="fab fa-google-pay"></i>
         </div>
       </div>
-      <p className="footer-credits">Plataforma fornecida por <strong>Burgz Delivery Digital</strong></p>
+      <p className="footer-credits">Plataforma fornecida por <strong>Star Burger Digital</strong></p>
     </footer>
   )
 }
