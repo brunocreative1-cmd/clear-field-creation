@@ -189,7 +189,7 @@ export default function LocationModal() {
 
         {/* Header com logo */}
         <div className="loc-header">
-          <img src="/img/logo.jpeg" alt="Burgz Delivery" className="loc-logo" />
+          <img src="/img/logo.jpeg" alt="Star Burger" className="loc-logo" />
         </div>
 
         <div className="loc-body">
