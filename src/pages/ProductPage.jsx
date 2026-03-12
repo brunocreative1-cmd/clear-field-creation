@@ -90,11 +90,11 @@ export default function ProductPage() {
         {/* Overlay com info da loja */}
         <div className="pd-store-overlay">
           <div className="pd-store-logo">
-            <img src="/img/logo.webp" alt="Burgz Delivery" />
+            <img src="/img/logo.webp" alt="Star Burger" />
           </div>
           <div className="pd-store-info">
             <span className="pd-store-name">
-              Burgz Delivery <i className="fas fa-check-circle"></i>
+              Star Burger <i className="fas fa-check-circle"></i>
             </span>
             <span className="pd-store-meta">20-30 min · <strong>Grátis</strong></span>
           </div>
