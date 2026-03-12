@@ -78,7 +78,7 @@ export default function LocationBanner() {
           {view === 'welcome' && (
             <div className="locbot-content locbot-center">
               <div className="locbot-emoji">🍔</div>
-              <h2 className="locbot-title">Bem-vindo à Burgz!</h2>
+              <h2 className="locbot-title">Bem-vindo à Star Burger!</h2>
               <p className="locbot-subtitle">Procure o delivery mais próximo de você.</p>
               <button className="locbot-cta" onClick={handleLocate}>
                 <i className="fas fa-map-marker-alt"></i>
@@ -107,7 +107,7 @@ export default function LocationBanner() {
                 </svg>
               </div>
               <h2 className="locbot-title">
-                A Burgz mais próxima está{' '}
+                A Star Burger mais próxima está{' '}
                 a <span className="locbot-highlight">{distance}km</span> de você! 📍
               </h2>
               <p className="locbot-delivery">Entrega em <strong>20–30 min</strong></p>

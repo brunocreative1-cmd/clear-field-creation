@@ -189,7 +189,7 @@ export default function LocationModal() {
 
         {/* Header com logo */}
         <div className="loc-header">
-          <img src="/img/logo.jpeg" alt="Burgz Delivery" className="loc-logo" />
+          <img src="/img/logo.jpeg" alt="Star Burger" className="loc-logo" />
         </div>
 
         <div className="loc-body">
@@ -310,7 +310,7 @@ export default function LocationModal() {
             </div>
             <h2 className="loc-title" style={{ marginBottom: 8 }}>Tudo certo!</h2>
             <p className="loc-result-text">
-              A Burgz Delivery mais próxima fica a <strong>1,6km</strong> de você!<br />
+              A Star Burger mais próxima fica a <strong>1,6km</strong> de você!<br />
               Entrega em <strong>20 a 30 minutos</strong>.
             </p>
             <p className="loc-redirecting">

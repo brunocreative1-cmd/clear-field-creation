@@ -54,7 +54,7 @@ export default function Header() {
     <>
       <header className="header-banner">
         <div className="banner-cover">
-          <img src="/img/capa.webp" alt="Burgz Delivery - Hambúrgueres artesanais" className="banner-cover-img" />
+          <img src="/img/capa.webp" alt="Star Burger - Hambúrgueres artesanais" className="banner-cover-img" />
         </div>
       </header>
 
@@ -66,7 +66,7 @@ export default function Header() {
         </div>
 
         <section className="restaurant-info">
-          <h1 className="restaurant-name">Burgz Delivery</h1>
+          <h1 className="restaurant-name">Star Burger</h1>
           <div className="social-icons">
             <a href="#" className="social-icon" aria-label="Instagram">
               <i className="fab fa-instagram"></i>

@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="site-footer">
-      <p className="footer-brand">BURGZ | Hambúrgueres Artesanais</p>
+      <p className="footer-brand">STAR BURGER | Hambúrgueres Artesanais</p>
       <div className="footer-payments">
         <span className="footer-payments-label">Formas de pagamento</span>
         <div className="footer-payments-icons">
@@ -16,7 +16,7 @@ export default function Footer() {
           <i className="fab fa-google-pay"></i>
         </div>
       </div>
-      <p className="footer-credits">Plataforma fornecida por <strong>Burgz Delivery Digital</strong></p>
+      <p className="footer-credits">Plataforma fornecida por <strong>Star Burger Digital</strong></p>
     </footer>
   )
 }

@@ -545,8 +545,8 @@ export default function CheckoutPage() {
             <i className="fas fa-arrow-left"></i>
           </button>
           <div className="pgmt-header-logo">
-            <img src="/img/logo.webp" alt="Burgz Delivery" className="pgmt-logo-img" />
-            <span className="pgmt-logo-name">Burgz Delivery</span>
+            <img src="/img/logo.webp" alt="Star Burger" className="pgmt-logo-img" />
+            <span className="pgmt-logo-name">Star Burger</span>
           </div>
         </div>
 
